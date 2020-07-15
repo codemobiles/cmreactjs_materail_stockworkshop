@@ -26,7 +26,7 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { useDispatch, useSelector } from "react-redux";
 import * as stockActions from "./../../actions/stock.action";
-
+import Paper from "@material-ui/core/Paper";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -215,12 +215,20 @@ export default function Stock(props) {
   return (
     <div className={classes.root}>
       <MaterialTable
+        options={{
+          pageSize: 8,
+          search: true,
+          rowStyle: (rowData, index) => ({
+            backgroundColor: index % 2 == 0 ? "#f8faf9" : "#fff",
+          }),
+        }}
         icons={tableIcons}
         columns={columns}
         data={stockReducer.result ? stockReducer.result : []}
         title="Stock"
         actions={actions}
         components={{
+          Container: (props) => <Paper {...props} elevation={10} />,
           Toolbar: (props) => (
             <div>
               <MTableToolbar {...props} />
