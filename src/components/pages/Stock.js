@@ -93,7 +93,7 @@ export default function Stock(props) {
               }}
             >
               <img
-                src=""
+                src={`${imageUrl}/images/${selectedItem.image}`}
                 style={{ width: 50, height: 50, borderRadius: "5%" }}
               />
               <span style={{ marginLeft: 20 }}>{selectedItem.name}</span>
@@ -104,7 +104,14 @@ export default function Stock(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => {}} color="secondary" autoFocus>
+          <Button
+            onClick={() => {
+              dispatch(stockActions.deleteProduct(selectedItem.id));
+              handleClose();
+            }}
+            color="secondary"
+            autoFocus
+          >
             Confirm
           </Button>
         </DialogActions>

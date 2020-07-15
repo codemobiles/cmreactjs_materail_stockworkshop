@@ -42,9 +42,16 @@ const doGetProducts = async (dispatch) => {
   }
 };
 
+export const deleteProduct = (id) => {
+  return async (dispatch) => {
+    debugger;
+    await httpClient.delete(`/stock/product/${id}`);
+    await doGetProducts(dispatch);
+  };
+};
 
 export const updateProduct = (formData, history) => {
-  return async dispatch => {
+  return async (dispatch) => {
     await httpClient.put(server.PRODUCT_URL, formData);
     history.goBack();
   };
