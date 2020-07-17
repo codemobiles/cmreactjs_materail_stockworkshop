@@ -117,7 +117,7 @@ export default function App() {
   };
 
   const handleDrawerOpen = () => {
-    setOpenDrawer(true);
+    setOpenDrawer(!openDrawer);
   };
 
   const loginReducer = useSelector(({ loginReducer }) => loginReducer);
