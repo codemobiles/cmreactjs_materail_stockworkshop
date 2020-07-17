@@ -35,16 +35,16 @@ export default function StockEdit(props) {
   React.useEffect(() => {
     let id = props.match.params.id;
     dispatch(stockActions.getProductById(id));
-  }, []);
+  }, [dispatch, props.match.params.id]);
 
   const showPreviewImage = (values) => {
     if (values.file_obj) {
-      return <img src={values.file_obj} style={{ height: 100 }} />;
+      return <img src={values.file_obj} style={{ height: 200 }} />;
     } else if (values.image) {
       return (
         <img
           src={`${imageUrl}/images/${values.image}`}
-          style={{ height: 100 }}
+          style={{ height: 200 }}
         />
       );
     }

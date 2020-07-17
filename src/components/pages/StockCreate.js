@@ -16,7 +16,7 @@ import * as stockActions from "./../../actions/stock.action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "80%",    
+    width: "80%",
   },
   field: {
     marginTop: 16,
@@ -33,7 +33,7 @@ export default function StockCreate(props) {
   const showPreviewImage = (values) => {
     if (values.file_obj) {
       return (
-        <img src={values.file_obj} style={{ height: 100, marginTop: 16 }} />
+        <img src={values.file_obj} style={{ height: 200, marginTop: 16 }} />
       );
     }
   };

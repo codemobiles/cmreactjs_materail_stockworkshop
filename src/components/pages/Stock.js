@@ -126,6 +126,7 @@ export default function Stock(props) {
   const columns = [
     {
       title: "Id",
+      field: "id",
       render: (item) => <Typography variant="body1">{item.id}</Typography>,
     },
     {
@@ -140,6 +141,7 @@ export default function Stock(props) {
     },
     {
       title: "Name",
+      field: "name",
       cellStyle: { minWidth: 700 },
       render: (item) => <Typography variant="body1">{item.name}</Typography>,
     },
