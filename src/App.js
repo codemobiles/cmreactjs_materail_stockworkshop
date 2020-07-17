@@ -23,7 +23,7 @@ import Report from "./components/pages/Report";
 import AboutUs from "./components/pages/AboutUs";
 import * as loginActions from "./actions/login.action";
 
-const drawerWidth = 240;
+const drawerWidth = 290;
 // https://material-ui.com/customization/theming/
 const theme = createMuiTheme({
   palette: {

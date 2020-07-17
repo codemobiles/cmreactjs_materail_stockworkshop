@@ -25,7 +25,7 @@ import {
   Person as PersonIcon,
 } from "@material-ui/icons";
 
-const drawerWidth = 240;
+const drawerWidth = 290;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -107,7 +107,7 @@ export default function Menu(props) {
       >
         <div className={classes.drawerHeader}>
           <img
-            height={50}
+            width="80%"
             src={`${process.env.PUBLIC_URL}/images/logo_codemobiles.png`}
             alt=""
           />
@@ -122,7 +122,7 @@ export default function Menu(props) {
         </div>
 
         <img
-          height={250}
+          height={300}
           src={`${process.env.PUBLIC_URL}/images/menu_banner.jpg`}
           alt=""
         />

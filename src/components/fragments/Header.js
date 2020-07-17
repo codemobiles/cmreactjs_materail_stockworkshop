@@ -11,34 +11,34 @@ import * as loginActions from "./../../actions/login.action";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-const drawerWidth = 240;
-const useStyles = makeStyles(theme => ({
+const drawerWidth = 290;
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  }
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
 }));
 
-const Header = props => {
+const Header = (props) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Header = props => {
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: props.open
+          [classes.appBarShift]: props.open,
         })}
       >
         <Toolbar>
