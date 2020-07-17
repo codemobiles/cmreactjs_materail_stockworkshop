@@ -1,12 +1,13 @@
 import React from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Typography, makeStyles, Paper } from "@material-ui/core";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { Button, ButtonGroup, IconButton } from "@material-ui/core";
 
 export default function Report() {
   const [chartType, setChartType] = React.useState("bar");
-  const [chartData, setChartData] = React.useState([]);
+  const [chartData1, setChartData1] = React.useState([]);
+  const [chartData2, setChartData2] = React.useState([]);
 
   const getRandomInt = () => {
     let randoms = [];
@@ -17,25 +18,39 @@ export default function Report() {
   };
 
   React.useEffect(() => {
-    setChartData(getRandomInt());
+    setChartData1(getRandomInt());
+    setChartData2(getRandomInt());
   }, []);
 
   const data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
+        label: "Revenue 2017",
+        fill: true,
+        lineTension: 0.1,
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "rgba(75,92,192,1)",
+        borderCapStyle: "butt",
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: "miter",
+        pointBorderColor: "rgba(75,92,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(75,92,192,1)",
+        pointHoverBorderColor: "rgba(120,220,220,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: chartData1,
+      },
+      {
         label: "Revenue 2018",
         fill: true,
         lineTension: 0.1,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(255, 99, 132, 0.2)",
-        ],
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(75,192,192,1)",
         borderCapStyle: "butt",
         borderDash: [],
@@ -50,7 +65,7 @@ export default function Report() {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: chartData,
+        data: chartData2,
       },
     ],
   };
@@ -71,8 +86,17 @@ export default function Report() {
     },
   };
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+      padding: 42,
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
-    <div>
+    <Paper className={classes.root} elevation={10}>
       <h1>Report</h1>
 
       <ButtonGroup
@@ -102,7 +126,8 @@ export default function Report() {
       <IconButton
         aria-label="refresh"
         onClick={() => {
-          setChartData(getRandomInt());
+          setChartData1(getRandomInt());
+          setChartData2(getRandomInt());
         }}
       >
         <RefreshIcon />
@@ -118,6 +143,6 @@ export default function Report() {
           <Bar data={data} width={100} height={50} options={chartOption} />
         )}
       </div>
-    </div>
+    </Paper>
   );
 }
