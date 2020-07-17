@@ -24,6 +24,17 @@ import AboutUs from "./components/pages/AboutUs";
 import * as loginActions from "./actions/login.action";
 
 const drawerWidth = 240;
+// https://material-ui.com/customization/theming/
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#135ab8",
+    },
+    secondary: {
+      main: "#e85f5f",
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,7 +110,7 @@ export default function App() {
   React.useEffect(() => {
     console.log("App created");
     dispatch(loginActions.reLogin());
-  }, []);
+  }, [dispatch]);
 
   const handleDrawerClose = () => {
     setOpenDrawer(false);
@@ -112,38 +123,42 @@ export default function App() {
   const loginReducer = useSelector(({ loginReducer }) => loginReducer);
 
   return (
-    <Router>
-      {loginReducer.result && !loginReducer.error && (
-        <Header handleDrawerOpen={handleDrawerOpen} open={openDrawer} />
-      )}
-      {loginReducer.result && !loginReducer.error && (
-        <Menu open={openDrawer} handleDrawerClose={handleDrawerClose} />
-      )}
+    <>
+      <ThemeProvider theme={theme}>
+        <Router>
+          {loginReducer.result && !loginReducer.error && (
+            <Header handleDrawerOpen={handleDrawerOpen} open={openDrawer} />
+          )}
+          {loginReducer.result && !loginReducer.error && (
+            <Menu open={openDrawer} handleDrawerClose={handleDrawerClose} />
+          )}
 
-      <div className={classes.drawerHeader} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]:
-            openDrawer && loginReducer.result && !loginReducer.error,
-        })}
-      >
-        <Container style={{ display: "flex", justifyContent: "center" }}>
-          <Switch>
-            <LoginRoute path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <SecuredRoute path="/stock" component={Stock} />
-            <SecuredRoute path="/stockCreate" component={StockCreate} />
-            <SecuredRoute path="/stockEdit/:id" component={StockEdit} />
-            <Route
-              exact={true}
-              path="/"
-              component={() => <Redirect to="/login" />}
-            />
-            <SecuredRoute path="/report" component={Report} />
-            <SecuredRoute path="/aboutus" component={AboutUs} />
-          </Switch>
-        </Container>
-      </main>
-    </Router>
+          <div className={classes.drawerHeader} />
+          <main
+            className={clsx(classes.content, {
+              [classes.contentShift]:
+                openDrawer && loginReducer.result && !loginReducer.error,
+            })}
+          >
+            <Container style={{ display: "flex", justifyContent: "center" }}>
+              <Switch>
+                <LoginRoute path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <SecuredRoute path="/stock" component={Stock} />
+                <SecuredRoute path="/stockCreate" component={StockCreate} />
+                <SecuredRoute path="/stockEdit/:id" component={StockEdit} />
+                <Route
+                  exact={true}
+                  path="/"
+                  component={() => <Redirect to="/login" />}
+                />
+                <SecuredRoute path="/report" component={Report} />
+                <SecuredRoute path="/aboutus" component={AboutUs} />
+              </Switch>
+            </Container>
+          </main>
+        </Router>
+      </ThemeProvider>
+    </>
   );
 }

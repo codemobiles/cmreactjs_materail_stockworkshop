@@ -121,7 +121,7 @@ export default function Stock(props) {
 
   React.useEffect(() => {
     dispatch(stockActions.getProducts());
-  }, []);
+  }, [dispatch]);
 
   const columns = [
     {
@@ -195,7 +195,7 @@ export default function Stock(props) {
 
   const actions = [
     {
-      icon: () => <Edit />,
+      icon: () => <Edit style={{ color: "#91979c" }} />,
       iconProps: { color: "primary" },
       tooltip: "Edit",
       onClick: (event, rowData) => {
@@ -203,7 +203,7 @@ export default function Stock(props) {
       },
     },
     {
-      icon: () => <DeleteOutline />,
+      icon: () => <DeleteOutline color="secondary" />,
       iconProps: { color: "action" },
       tooltip: "Delete",
       onClick: (event, rowData) => {
